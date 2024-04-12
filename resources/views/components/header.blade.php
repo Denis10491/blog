@@ -21,7 +21,7 @@
             </div><!-- /.header-menu -->
 
             <div class="header-actions flex items-center gap-3 md:gap-5 z-[9999]">
-                <a href="login.html" class="profile hidden xs:flex items-center">
+                <a href="{{ route('login') }}" class="profile hidden xs:flex items-center">
                     <svg aria-hidden="true" class="profile-icon w-8 h-8 text-purple"
                          height="1em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 32 32" width="1em"
                          xmlns="http://www.w3.org/2000/svg">
