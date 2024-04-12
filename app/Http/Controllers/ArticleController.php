@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class ArticleController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
-        $articles = Cache::remember('paginated.articles', 90, function () {
+        $articles = Cache::remember('paginated.articles', 50, function () {
             return Article::query()->with('categories')->latest()->paginate(6);
         });
+
+        if ($request->category) {
+            $articles = Category::where('name', $request->category)->first()
+                ->articles()->with('categories')
+                ->latest()->paginate(6);
+        }
 
         $categories = Cache::remember('categories', 120, function () {
             return Category::all();
@@ -21,7 +28,8 @@ class ArticleController extends Controller
 
         return view('articles', [
             'articles' => $articles,
-            'categories' => $categories
+            'categories' => $categories,
+            'currentCategory' => $request->category
         ]);
     }
 

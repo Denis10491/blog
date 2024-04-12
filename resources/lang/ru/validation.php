@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'required' => 'Поле :name обязательно к заполнению',
-    'string' => 'Поле :name должно быть строкой',
+    'required' => 'Поле :attribute обязательно к заполнению',
+    'string' => 'Поле :attribute должно быть строкой',
     'email' => 'Неверный формат email',
-    'unique' => ':name уже занято',
+    'unique' => ':attribute уже занято',
     'min' => 'Поле :name слишком короткое',
     'confirmed' => 'Пароли не совпадают'
 ];
