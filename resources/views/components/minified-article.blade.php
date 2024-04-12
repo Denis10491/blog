@@ -20,7 +20,7 @@
 
             </div>
             <div class="flex flex-wrap sm:items-center justify-center sm:justify-between mt-8 sm:mt-10">
-                <a class="btn btn-pink" href="article.html">
+                <a class="btn btn-pink" href="{{ route('articles.show', ['article' => $article]) }}">
                     Подробнее
                 </a>
             </div>
