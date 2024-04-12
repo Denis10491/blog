@@ -10,6 +10,7 @@ services:
         environment:
             - APP_ENV=local
             - APP_DEBUG=true
+            - REDIS_HOST=redis
         ports:
             - 8000:80
         volumes:
@@ -19,6 +20,14 @@ services:
             - local
         depends_on:
             - mysql
+            - redis
+
+    redis:
+        image: redis:latest
+        ports:
+            - 6379:6379
+        networks:
+            - local
 
     mysql:
         image: mysql:latest
