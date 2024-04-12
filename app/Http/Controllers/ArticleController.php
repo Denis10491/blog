@@ -11,9 +11,10 @@ class ArticleController extends Controller
 {
     public function index(): View
     {
-        $articles = Cache::remember('articles', 90, function() {
+        $articles = Cache::remember('paginated.articles', 90, function() {
             return Article::query()->with('categories')->latest()->paginate(6);
         });
+
         $categories = Cache::remember('categories', 120, function() {
             return Category::all();
         });

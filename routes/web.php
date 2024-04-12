@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::controller(ArticleController::class)->group(function () {
-    Route::get('/', 'index')->name('articles');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
