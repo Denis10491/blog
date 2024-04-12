@@ -1,6 +1,6 @@
 module.exports = {
     content: [
-        './app/**/*.html',
+        "./resources/**/*.blade.php",
     ],
     darkMode: 'class',
     theme: {
