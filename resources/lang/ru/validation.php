@@ -5,6 +5,6 @@ return [
     'string' => 'Поле :attribute должно быть строкой',
     'email' => 'Неверный формат email',
     'unique' => ':attribute уже занято',
-    'min' => 'Поле :name слишком короткое',
+    'min.string' => 'Поле :attribute слишком короткое',
     'confirmed' => 'Пароли не совпадают'
 ];

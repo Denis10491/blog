@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.main')
 
 @section('content')
     <main class="bg-darkblue text-white md:min-h-screen md:flex md:items-center md:justify-center py-16 lg:py-20">
@@ -12,15 +12,15 @@
                 </a>
             </div>
             <div class="max-w-[640px] mt-12 mx-auto p-6 xs:p-8 md:p-12 2xl:p-16 rounded-[20px] bg-purple">
-                <h1 class="mb-5 text-lg font-semibold">Вход в аккаунт</h1>
-                <form class="space-y-3" action="{{ route('api.login') }}" method="POST">
+                <h1 class="mb-5 text-lg font-semibold">Восстановить пароль</h1>
+                <form class="space-y-3" method="POST" action="{{ route('api.password.request') }}">
                     @csrf
 
                     <div class="mt-3 text-pink text-xxs xs:text-xs">@if (session('status'))
                             {{ session('status') }}
                         @endif</div>
-                    
-                    <div class="mt-3 text-pink text-xxs xs:text-xs">@error('email') {{ $message }} @enderror</div>
+                    <div class="mt-3 text-pink text-xxs xs:text-xs">@error('status') {{ $message }} @enderror</div>
+
                     <input
                         class="w-full h-14 px-4 rounded-lg border border-[#A07BF0] bg-white/10 focus:border-pink focus:shadow-[0_0_0_2px_#EC4176] outline-none transition text-white placeholder:text-white text-xxs md:text-xs font-semibold"
                         type="email"
@@ -31,30 +31,15 @@
                         name="email"
                     >
 
-                    <input
-                        class="w-full h-14 px-4 rounded-lg border border-[#A07BF0] bg-white/10 focus:border-pink focus:shadow-[0_0_0_2px_#EC4176] outline-none transition text-white placeholder:text-white text-xxs md:text-xs font-semibold"
-                        type="password"
-                        required=""
-                        autocomplete="current-password"
-                        placeholder="Пароль"
-                        name="password"
-                    >
-
-                    <button class="w-full btn btn-pink" type="submit">Войти</button>
+                    <button class="w-full btn btn-pink" type="submit">Отправить</button>
                 </form>
 
                 <div class="space-y-3 mt-5">
                     <div class="text-xxs md:text-xs">
                         <a class="text-white hover:text-white/70 font-bold"
-                           href="{{ route('password.index') }}"
+                           href="{{ route('login') }}"
                         >
-                            Забыли пароль?
-                        </a>
-                    </div>
-                    <div class="text-xxs md:text-xs">
-                        <a class="text-white hover:text-white/70 font-bold"
-                           href="{{ route('register') }}">
-                            Регистрация
+                            Я вспомнил пароль
                         </a>
                     </div>
                 </div>
