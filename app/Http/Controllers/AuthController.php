@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -38,5 +39,12 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return redirect()->route('home');
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Session::flush();
+
+        return redirect()->back();
     }
 }
