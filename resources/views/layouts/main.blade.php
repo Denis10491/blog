@@ -14,6 +14,8 @@
     <meta name="msapplication-TileColor" content="#7843E9">
     <meta name="theme-color" content="#7843E9">
 
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
 </head>
 <body>
