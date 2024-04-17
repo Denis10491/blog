@@ -21,20 +21,25 @@
                 <div class="w-full p-6 xs:p-8 md:p-12 2xl:p-16 rounded-[20px] bg-purple">
                     <form class="space-y-3" x-show="active === 1"
                           action="{{ route('api.user.update.profile', ['user' => $user]) }}"
-                          method="POST">
+                          method="POST"
+                          enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
                         <div class="flex items-center justify-between">
-                            <div><input type="file" class="hidden">
+                            <div>
+                                <input type="file" class="hidden" id="image-input" name="avatar">
                                 <div class="mt-2">
                                     <img
-                                        src="{{ asset('assets/images/nav/logo.svg') }}"
+                                        id="avatar-img"
+                                        src="{{ $user->avatar_url }}"
                                         alt="" class="rounded-full h-20 w-20 object-cover"/>
                                 </div>
                             </div>
                             <div class="flex items-center justify-between">
-                                <button class="w-full btn btn-pink mt-2 mr-2" type="button"> Загрузить</button>
+                                <button class="w-full btn btn-pink mt-2 mr-2" type="button" @click="loadImage">
+                                    Загрузить
+                                </button>
                                 <button class="w-full btn btn-outline mt-2" type="button"> Удалить</button>
                             </div>
                         </div>
@@ -116,4 +121,23 @@
             </div>
         </div>
     </main>
+
+    <script>
+        const imageInput = document.getElementById('image-input');
+
+        function loadImage() {
+            imageInput.click();
+        }
+
+        imageInput.addEventListener('change', function (event) {
+            let reader = new FileReader()
+
+            reader.addEventListener('loadend', function (event) {
+                console.log(reader)
+                document.getElementById('avatar-img').src = event.target.result
+            })
+
+            reader.readAsDataURL(event.target.files[0]);
+        })
+    </script>
 @endsection

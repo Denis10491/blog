@@ -7,6 +7,7 @@ use App\Http\Requests\User\UpdateProfileUserRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -16,6 +17,12 @@ class UserController extends Controller
         $request->validated();
 
         $data = [];
+
+        if (isset($request->avatar)) {
+            $path = $request->file('avatar')->storePublicly('avatars', 'public');
+            Storage::disk('public')->url($path);
+            $data['avatar_url'] = env('APP_URL').'/storage/'.$path;
+        }
 
         if (isset($request->name)) {
             $data['name'] = $request->name;
