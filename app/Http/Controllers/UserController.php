@@ -36,7 +36,7 @@ class UserController extends Controller
 
         return redirect()->back()->with([
             'status' => true,
-            'profile' => 'Профиль сохранен'
+            'profile' => __('messages.profile_updated')
         ]);
     }
 
@@ -52,7 +52,7 @@ class UserController extends Controller
 
         return redirect()->back()->with([
             'status' => true,
-            'password' => 'Новый пароль установлен'
+            'password' => __('messages.password_updated')
         ]);
     }
 }

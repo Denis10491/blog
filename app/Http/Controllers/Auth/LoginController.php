@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         if (!auth()->attempt($request->validated())) {
             return redirect()->back()->withErrors([
-                'email' => 'Неверно введены данные'
+                'email' => __('messages.login_failed')
             ])->withInput();
         }
 
