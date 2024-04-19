@@ -1,5 +1,7 @@
 # Blog 2.0
 
+### Laravel 11, Redis, MoonShine, TailwindCSS, Alpine.js
+
 ### Run Locally
 
 Clone the project
