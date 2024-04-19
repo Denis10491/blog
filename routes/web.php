@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
-use App\Http\Controllers\Admin\Auth\LoginController as AdminLoginController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -20,18 +18,6 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('/articles/{article}', 'show')->name('articles.show');
 });
 
-Route::middleware('auth:admin')->prefix('/admin')->as('admin.')->group(function () {
-    Route::controller(AdminArticleController::class)->group(function () {
-        Route::get('/', 'index')->name('articles.index');
-        Route::get('/articles/create', 'showFormCreate')->name('articles.create');
-        Route::get('/articles/{article}', 'show')->name('articles.show');
-
-        Route::post('/api/articles', 'store')->name('api.articles.store');
-        Route::patch('/api/articles/{article}', 'update')->name('api.articles.update');
-        Route::delete('/api/articles/{article}', 'destroy')->name('api.articles.destroy');
-    });
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
@@ -46,11 +32,6 @@ Route::middleware('guest')->group(function () {
     Route::controller(RegisterController::class)->group(function () {
         Route::get('/register', 'index')->name('register');
         Route::post('/api/register', 'register')->name('api.register');
-    });
-
-    Route::controller(AdminLoginController::class)->group(function () {
-        Route::get('admin/login', 'index')->name('admin.login');
-        Route::post('admin/api/login', 'login')->name('admin.api.login');
     });
 
     Route::controller(LoginController::class)->group(function () {
