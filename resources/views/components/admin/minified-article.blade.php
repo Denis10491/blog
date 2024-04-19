@@ -20,9 +20,18 @@
 
             </div>
             <div class="flex flex-wrap sm:items-center justify-center sm:justify-between mt-8 sm:mt-10">
-                <a class="btn btn-pink" href="{{ route('articles.show', ['article' => $article]) }}">
-                    Подробнее
+                <a class="btn btn-purple" href="{{ route('admin.articles.show', ['article' => $article]) }}">
+                    Изменить
                 </a>
+
+                <form action="{{ route('admin.api.articles.destroy', ['article' => $article]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="btn bg-pink">
+                        Удалить
+                    </button>
+                </form>
             </div>
         </div>
     </div>

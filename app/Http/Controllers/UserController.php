@@ -34,7 +34,6 @@ class UserController extends Controller
 
         $user->update($data);
 
-
         return redirect()->back()->with([
             'status' => true,
             'profile' => 'Профиль сохранен'

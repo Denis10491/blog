@@ -17,7 +17,7 @@ class ArticleController extends Controller
         });
 
         if ($request->category) {
-            $articles = Category::where('name', $request->category)->first()
+            $articles = Category::where('name', $request->category)->firstOrFail()
                 ->articles()->with('categories')
                 ->latest()->paginate(6);
         }

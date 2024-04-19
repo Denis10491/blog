@@ -21,6 +21,16 @@ return new class extends Migration {
             $table->timestamps();
         });
 
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('avatar_url')->default(env('APP_URL').'/storage/avatars/logo.svg');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');

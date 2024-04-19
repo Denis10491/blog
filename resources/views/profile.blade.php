@@ -133,7 +133,6 @@
             let reader = new FileReader()
 
             reader.addEventListener('loadend', function (event) {
-                console.log(reader)
                 document.getElementById('avatar-img').src = event.target.result
             })
 
